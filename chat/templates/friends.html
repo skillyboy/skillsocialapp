@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+  <head>
+  <title>Social - Network, Community and Event Theme</title>
+
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Webestica.com">
+  <meta name="description" content="Bootstrap 5 based Social Media Network and Community Theme">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static '' %}/images/favicon.ico">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static '' %}/vendor/font-awesome/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/bootstrap-icons/bootstrap-icons.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/OverlayScrollbars-master/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/tiny-slider/dist/tiny-slider.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/choices.js/public/{% static '' %}assets/styles/choices.min.css" />
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/glightbox-master/dist/css/glightbox.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/dropzone/dist/dropzone.css" />
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/flatpickr/dist/flatpickr.css" />
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/plyr/plyr.css" />
+
+  <!-- Theme CSS -->
+  <link id="style-switch" rel="stylesheet" type="text/css" href="{% static '' %}assets/css/style.css">
+</head>
+{% if messages %}
+{% for item in messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{item}}!</strong>
+    <button type="button" class="close bg-info" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif %} 
+
+<nav class="bg-light row">
+  <li><button><a class="nav-link bg-info" href="{%url 'home' %}">Home</a></button></li>
+   <li><button><a class="nav-link bg-info" href="{%url 'logout' %}">Logout</a></button></li>
+
+</nav>
+<body> 
+ <h1>ALL PROFILES</h1>
+  {% if allusers %}
+  {% for item in allusers %}
+    <div class="col-6">
+      <!-- Friends item START -->
+      <div class="card shadow-none text-center h-100">
+        <!-- Card body -->
+        <div class="card-body p-2 pb-0">
+          <div class="avatar avatar-xl">
+            <a href="#!"><img class="avatar-img rounded-circle" src="{% static '' %}/images/avatar/04.jpg" alt=""></a>
+          </div>
+          <h6 class="card-title mb-1 mt-3"> <a href="#"> {{item.user}}</a></h6>
+        </div>
+
+        <!-- Card footer -->
+        <form method="POST" class="row col-lg-8 col-12" action="{% url 'addFriend' %}">
+        {% csrf_token %}
+          <div class="card-footer p-2 border-0">
+            <input type="hidden" id="file" name="participant" value="{{item.user}}" >
+             <button class="btn btn-sm btn-success bg-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Add friend"> <i class="bi bi-person"></i> </button>
+          </div>
+        </form>
+
+      </div>
+      <!-- Friends item END -->
+    </div>
+  {% endfor %}
+  {% endif %}
+      
+ <h1>MY FRIENDS</h1>
+
+  {% if friends %}
+  {% for item in friends %}
+    <div class="col-6">
+      <!-- Friends item START -->
+      <div class="card shadow-none text-center h-100">
+        <!-- Card body -->
+        <div class="card-body p-2 pb-0">
+          <div class="avatar avatar-xl">
+            <a href="#!"><img class="avatar-img rounded-circle" src="{% static '' %}/images/avatar/04.jpg" alt=""></a>
+          </div>
+          <h6 class="card-title mb-1 mt-3"> <a href="#"> {{item.user2}} </a></h6>
+        </div>
+        <!-- Card footer -->
+        <form method="POST" class="row col-lg-8 col-12" action="{% url 'unfriend' %}">
+        {% csrf_token %}
+          <div class="card-footer p-2 border-0">
+            <input type="hidden" id="file" name="friend" value="{{item.id}}" >
+            <button class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove friend"> <i class="bi bi-person-x"></i> </button>
+          </div>
+       </form>
+
+      </div>
+      <!-- Friends item END -->
+    </div>
+  {% endfor %}
+  {% endif %}
+      
+  </body>
+  </html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+  <head>
+  <title>Social - Network, Community and Event Theme</title>
+
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Webestica.com">
+  <meta name="description" content="Bootstrap 5 based Social Media Network and Community Theme">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static '' %}assets/images/favicon.ico">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/font-awesome/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/bootstrap-icons/bootstrap-icons.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/OverlayScrollbars-master/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/tiny-slider/dist/tiny-slider.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/choices.js/public/{% static '' %}assets/styles/choices.min.css" />
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/glightbox-master/dist/css/glightbox.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/dropzone/dist/dropzone.css" />
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/flatpickr/dist/flatpickr.css" />
+  <link rel="stylesheet" type="text/css" href="{% static '' %}assets/vendor/plyr/plyr.css" />
+
+  <!-- Theme CSS -->
+  <link id="style-switch" rel="stylesheet" type="text/css" href="{% static '' %}assets/css/style.css">
+
+</head>
+<nav class="bg-light row">
+  <li><button><a class="nav-link" href="{%url 'friends' %}">Click to add Friends</a></button></li>
+   <li><button><a class="nav-link" href="{%url 'logout' %}">Logout</a></button></li>
+
+</nav>
+<body>
+  {% if messages %}
+  {% for item in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{item}}!</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endfor %}
+{% endif %} 
+
+<!-- =======================
+Header START -->
+<header class="navbar-light fixed-top header-static bg-mode">
+
+</header>
+<!-- =======================
+Header END -->
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+  
+  <!-- Container START -->
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Sidenav START -->
+      <div class="col-lg-3">
+        <!-- Navbar START-->
+        <nav class="navbar navbar-expand-lg mx-0"> 
+          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSideNavbar">
+
+            <div class="offcanvas-body d-block px-2 px-lg-0">
+              <!-- Card START -->
+              <div class="card overflow-hidden">
+                <!-- Cover image -->
+                <div class="h-50px" style="background-image:url(assets/images/bg/01.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+                  <!-- Card body START -->
+                  <div class="card-body pt-0">
+                    <div class="text-center">
+                    <!-- Avatar -->
+                    <div class="avatar avatar-lg mt-n5 mb-3">
+                      <a href="#!"><img class="avatar-img rounded border border-white border-3" src="{% static '' %}assets/images/avatar/07.jpg" alt=""></a>
+                    </div>
+                    <!-- Info -->
+                    <h5 class="mb-0"> <a href="#!">{{user}} </a> </h5>
+                    <small></small>
+                    <p class="mt-3">I'd love to be considered for the role of a junior developer in your company</p>
+                  </div>
+                  <li><button><a class="nav-link" href="{%url 'friends' %}">Click to add Friends</a></button></li>
+
+                  <!-- Divider -->
+                  <hr>
+
+                  
+                <!-- Card body END -->
+
+              <!-- Helper link END -->
+              <!-- Copyright -->
+            </div>
+          </div>
+        </nav>
+        <!-- Navbar END-->
+      </div>
+      <!-- Sidenav END -->
+
+
+      
+      <!-- Main content START -->
+    <form method="POST" class="row col-lg-8 col-12" action="{% url 'post' %}" enctype="multipart/form-data" >
+      {% csrf_token %}
+      <div class="col-md-8 col-lg-6 vstack gap-4">
+          <!-- Share feed START -->
+          <div class="card card-body">
+            <div class="d-flex mb-3">
+              <!-- Avatar -->
+              <div class="avatar avatar-xs me-2">
+                <a href="#"> <img class="avatar-img rounded-circle" src="" alt=""> </a>
+
+              </div>
+              <!-- Post input -->
+            </div>
+            <!-- Card Footer START -->
+            <div class="card-footer py-3">
+              <!-- Feed react START -->
+              <ul class="nav nav-fill nav-stack small">
+                <!-- Card share action dropdown END -->
+                <li class="nav-item">
+                  <a class="nav-link mb-0" href="#!"> <i class=""></i></a>
+                </li>
+
+              </ul>
+              <!-- Feed react END -->
+
+            </div>
+          </div>
+        <!-- Share feed END -->
+        </form>
+
+        {% if posts %}
+          {% for item in posts %}
+        <!-- Card feed item START -->
+        <div class="card">
+          <!-- Card header START -->
+          <div class="card-header border-0 pb-0">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center">
+                <!-- Avatar
+                <div class="avatar avatar-story me-2">
+                  <a href="#!"> <img class="avatar-img rounded-circle" src="{% static '' %}assets/images/avatar/04.jpg" alt=""> </a>
+                </div> -->
+                <!-- Info -->
+                <div>
+                  <div class="nav nav-divider">
+                    <h6 class="nav-item card-title mb-0"> <a href="#!"> {{item.user}}</a></h6> 
+                    <span class="nav-item small ml-2"> {{item.created}} </span>
+                  </div>
+                </div>
+              </div>
+              <!-- Card feed action dropdown START -->
+
+              <!-- Card feed action dropdown END -->
+            </div>
+          </div>
+          <!-- Card header END -->
+          <!-- Card body START -->
+          <div class="card-body">
+            <p>{{item.desc}}</p>
+            <!-- Card img -->
+              {% if item.file %}
+                <img class="card-img" src="{{item.file.url}}" alt="Post">
+              {% endif %}
+
+            <!-- Feed react START -->
+            <ul class="nav nav-stack py-3 small">
+
+              {% if item.liked %}
+              <form method="POST"  action="{% url 'likepost' %}"  >
+              {% csrf_token %}
+              <li class="nav-item">
+                <button type="submit"><i class="bi bi-hand-thumbs-up pe-1"></i>Liked {{item.no_likes}}</button> 
+                <input type="hidden" id="file" name="post" value="{{item.id}}" >
+              </li>
+              </form>
+
+              {% else %}
+              <form method="POST"  action="{% url 'likepost' %}"  >
+                {% csrf_token %}
+                <li class="nav-item">
+                  <!-- <a href="/likepost?post_id={{post.id}}">Liked</a> -->
+                <button type="submit"><i class="bi bi-hand-thumbs-up pe-1"></i>Like {{item.no_likes}} </button> 
+                <input type="hidden" id="file" name="post" value="{{item.id}}">
+              </li>
+             </form>
+
+              {% endif %}
+
+            </ul>
+            <!-- Feed react END -->
+          </div>
+          <!-- Card body END -->
+    </ul> 
+        </div>
+        <!-- Card feed item END -->
+
+        {% endfor %}
+        {% endif %} 
+
+
+
+
+
+
+
+        <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 ">
+
+          {% for suggestion in suggestions_username_profile_list %}
+          <div class="flex items-center justify-between py-3">
+              <div class="flex flex-1 items-center space-x-4">
+                  <a href="/profile/{{suggestion.user}}">
+                      <img src="{{suggestion.profileimg.url}}" class="bg-gray-200 rounded-full w-10 h-10">
+                  </a>
+                  <div class="flex flex-col">
+                      <span class="block capitalize font-semibold"> {{suggestion.user}} </span>
+                      <span class="block capitalize text-sm"> {{suggestion.bio}} </span>
+                  </div>
+              </div>
+              
+              <a href="/profile/{{suggestion.user}}" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 "> View User </a>
+          </div>
+          {% endfor %}
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<!-- =======================
+JS libraries, plugins and custom scripts -->
+
+	<!-- Bootstrap JS -->
+	<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Vendors -->
+	<script src="assets/vendor/tiny-slider/dist/tiny-slider.js"></script>
+	<script src="assets/vendor/OverlayScrollbars-master/js/OverlayScrollbars.min.js"></script>
+	<script src="assets/vendor/choices.js/public/assets/scripts/choices.min.js"></script>
+	<script src="assets/vendor/glightbox-master/dist/js/glightbox.min.js"></script>
+	<script src="assets/vendor/flatpickr/dist/flatpickr.min.js"></script>
+	<script src="assets/vendor/plyr/plyr.js"></script>
+	<script src="assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
+
+	<!-- Template Functions -->
+	<script src="assets/js/functions.js"></script>
+
+</body>
+</html>
