@@ -52,7 +52,7 @@ def home(request):
     context={
         'friends': friends,
     }  
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
 
 @login_required(login_url='login')
 def posts(request,id):
