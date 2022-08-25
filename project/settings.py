@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-m^juip41o_4=z6+=yin#mnuq%-$ik81q=cgwq60(#vezql9a8%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['skillsocialapp.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['skillsocialapp.herokuapp.com']
 
 
 # Application definition
